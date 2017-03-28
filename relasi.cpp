@@ -4,16 +4,12 @@
 #include "matkul.h"
 using namespace std;
 
-void createList_relasi
-
-(List_relasi &R)
+void createList_relasi(List_relasi &R)
 {
     R.FirstR=NULL;
 }
 
-address_relasi alokasiRelasi
-
-(address_mhs P, address_mtkl L)
+address_relasi alokasiRelasi(address_mhs P, address_mtkl L)
 {
     address_relasi Q = new
 
@@ -96,6 +92,21 @@ C)
     return NULL;
 }
 
+void printInfo_R(List_relasi R){
+    if(R.FirstR==NULL){
+        cout << "List kosong" <<endl;
+    }else{
+        address_relasi P = R.FirstR;
+        while(P!=NULL){
+            cout << "NIM Mahasiswa      : "<<P->parent->info.nim <<endl;
+            cout<<"Nama Mahasiswa       : "<<P->parent->info.nama<<endl;
+            cout << "Kode Matakuliah    : "<<P->child->info.kodematkul <<endl;
+            cout<<"Nama Matakuliah      : "<<P->child->info.namamatkul<<endl;
+            P=P->next;
+        }
+        cout << endl;
+    }
+}
 void deletebyrelasi(List_relasi &R, address_relasi &P)
 {
     address_relasi Q;
@@ -110,16 +121,19 @@ void deletebyrelasi(List_relasi &R, address_relasi &P)
             Q = R.FirstR;
             while(Q->next != P)
                 Q = Q->next;
+
+            if(Q->next == P && P->next == NULL)
+            {
+                deleteLast(R,P);
+            }
+            else
+            {
+                Q->next = P->next;
+                P->next = NULL;
+                deleterelasi(R,P);
+            }
         }
-        if(Q->next == P && P->next == NULL)
-        {
-            deleteLast(L,P);
-        }
-        else
-        {
-            Q->next = P->next;
-            P->next = NULL;
-        }
+        
     }
     else
     {
@@ -127,15 +141,11 @@ void deletebyrelasi(List_relasi &R, address_relasi &P)
     }
 }
 
-void printInfo(List_relasi R)
-{
-
-}
 void deleteFirst(List_relasi &R, address_relasi &P)
 {
     if(R.FirstR != NULL)
     {
-        if(next->R.FirstR == NULL)
+        if(R.FirstR->next == NULL)
         {
             P = R.FirstR;
             R.FirstR = NULL;
@@ -146,26 +156,28 @@ void deleteFirst(List_relasi &R, address_relasi &P)
             R.FirstR = P->next;
             P->next = NULL;
         }
+        deleterelasi(R,P);
     }
 }
 void deleteLast(List_relasi &R, address_relasi&P)
 {
     if(R.FirstR != NULL)
     {
-        if(next->R.FirstR == NULL)
+        if(R.FirstR->next == NULL)
         {
             deleteFirst(R,P);
         }
         else
         {
             address_relasi Q = R.FirstR;
-            while(Q->next->next) != NULL)
+            while((Q->next)->next != NULL)
             {
                 Q = Q->next;
             }
             P = Q->next;
             Q->next = NULL;
         }
+        deleterelasi(R,P);
     }
 }
 void deleteAfter(address_relasi Prec, address_relasi &P)
@@ -267,28 +279,39 @@ address_relasi searchrelasichild(List_relasi R, address_mtkl P)
         return NULL;
     }
 }
+
+address_relasi findMinimum(List_relasi &R){
+    address_relasi P = NULL;
+    if(R.FirstR==NULL){
+        cout<<"List Kosong"<<endl;
+    }else{
+        P = R.FirstR;
+        address_relasi min = P;
+        while(P->next != NULL ){
+            P = P->next;
+            if(P->parent->info.nim < min->parent->info.nim){
+                  min = P;
+            }                
+        }
+        P = min;
+    }
+    return P;
+}
+
 void sortrelasi(List_relasi &R)
 {
-    address_relasi P,P1,P2;
-    if(R.FirstR != NULL)
-    {
-        P = R.FirstR;
-        while (P->next != NULL)
-        {
-            if(P->info->parent.id > P->info->next->parent.id)
-            {
-                P2 = R.FirstR;
-                while(P2->next != P){
-                    P2 = P2->next;
-                }
-                deleteAfter(P2,P);
-                insertAfter(L,P->next,P);
-            }
-            P = P->next;
-        }
+    address_relasi P,A;
+    address_mhs Q;
+    address_mtkl Z;
+    List_relasi C;
+    createList_relasi(C);
+    while(R.FirstR != NULL){
+        P = findMinimum(R);
+        Q = P->parent;
+        Z = P->child;
+        deletebyrelasi(R,P);
+        A = alokasiRelasi(Q,Z);
+        insertLast(C,A);
     }
-    else
-    {
-        cout<<"List Relasi Kosong"<<endl;
-    }
+    R=C;
 }

@@ -47,16 +47,16 @@ void insertLast_mhs(List_mhs &L, address_mhs P)
 }
 address_mhs findElm_mhs(List_mhs L, int x)
 {
-    address_mhs P;
+    address_mhs Q;
     if(L.First == NULL){
-        P = NULL;
+        Q = NULL;
     }else{
-        P = L.First;
-        while((P != NULL)  && P->info.nim != x){
-            P=P->next;
+        Q = L.First;
+        while((Q != NULL)  && Q->info.nim != x){
+            Q=Q->next;
         }
     }
-    return P;
+    return Q;
 }
 void deleteFirst_mhs(List_mhs &L, address_mhs &P)
 {
@@ -66,7 +66,6 @@ void deleteFirst_mhs(List_mhs &L, address_mhs &P)
         P = L.First;
         L.First = P->next;
         P->next = NULL;
-
     }
 }
 void deleteLast_mhs(List_mhs &L, address_mhs &P)
@@ -85,7 +84,6 @@ void deleteLast_mhs(List_mhs &L, address_mhs &P)
             }
             P = q->next;
             q->next = NULL;
-
         }
     }
 }
