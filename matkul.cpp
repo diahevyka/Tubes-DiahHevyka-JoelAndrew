@@ -1,12 +1,16 @@
 #include <iostream>
 #include "matkul.h"
 
-void createList(List_mtkl &LC){
+//Joel Andrew MKG
+void createList(List_mtkl &LC)
+{
     LC.First = NULL;
     LC.Last = NULL;
 }
 
-address_mtkl alokasi(matakuliah x){
+//Joel Andrew MKG
+address_mtkl alokasi(matakuliah x)
+{
     address_mtkl P;
     P = new elmlist_mtkl;
     P->info.kodematkul = x.kodematkul;
@@ -20,54 +24,81 @@ address_mtkl alokasi(matakuliah x){
     return P;
 }
 
-void dialokasi_mtkl(address_mtkl &P){
+//Joel Andrew MKG
+void dialokasi_mtkl(address_mtkl &P)
+{
     delete P;
 }
 
-void insertFirst(List_mtkl &LC, address_mtkl P){
-    if (LC.First == NULL){
+//Joel Andrew MKG
+void insertFirst(List_mtkl &LC, address_mtkl P)
+{
+    if (LC.First == NULL)
+    {
         LC.First = P;
         LC.Last = P;
-    }else{
+    }
+    else
+    {
         P->next = LC.First;
         LC.First->Prev = P;
         LC.First = P;
     }
 }
 
-void insertLast(List_mtkl &LC, address_mtkl P){
-    if(LC.First == NULL){
+//Joel Andrew MKG
+void insertLast(List_mtkl &LC, address_mtkl P)
+{
+    if(LC.First == NULL)
+    {
         insertFirst(LC, P);
-    }else{
+    }
+    else
+    {
         LC.Last->next = P;
         P->Prev = LC.Last;
         LC.Last = P;
     }
 }
 
-void insertAfter(List_mtkl &LC, address_mtkl Prec_C, address_mtkl P){
-    if(Prec_C == NULL){
-        if(Prec_C->next == NULL){
+//Joel Andrew MKG
+void insertAfter(List_mtkl &LC, address_mtkl Prec_C, address_mtkl P)
+{
+    if(Prec_C == NULL)
+    {
+        if(Prec_C->next == NULL)
+        {
             insertLast(LC, P);
-        }else{
+        }
+        else
+        {
             P->next = Prec_C->next;
             P->Prev = Prec_C;
             Prec_C->next->Prev = P;
             Prec_C->next = P;
         }
-    }else{
+    }
+    else
+    {
         cout<<"Gagal insert after, Prec NULL"<<endl;
     }
 }
 
-void deleteFirst(List_mtkl &LC, address_mtkl &P){
-    if(LC.First == NULL){
+//Joel Andrew MKG
+void deleteFirst(List_mtkl &LC, address_mtkl &P)
+{
+    if(LC.First == NULL)
+    {
         cout<<"No data"<<endl;
-    }else if(LC.First == LC.Last){
+    }
+    else if(LC.First == LC.Last)
+    {
         P = LC.First;
         LC.First = NULL;
         LC.Last = NULL;
-    }else{
+    }
+    else
+    {
         P = LC.First;
         LC.First = P->next;
         LC.First->Prev = NULL;
@@ -75,14 +106,21 @@ void deleteFirst(List_mtkl &LC, address_mtkl &P){
     }
 }
 
-void deleteLast(List_mtkl &LC, address_mtkl &P){
-    if(LC.First == NULL){
+//Joel Andrew MKG
+void deleteLast(List_mtkl &LC, address_mtkl &P)
+{
+    if(LC.First == NULL)
+    {
         cout<<"No data"<<endl;
-    }else if( LC.First== LC.Last){
+    }
+    else if( LC.First== LC.Last)
+    {
         P = LC.First;
         LC.First = NULL;
         LC.Last = NULL;
-    }else{
+    }
+    else
+    {
         P = LC.Last;
         LC.Last = P->Prev;
         LC.Last->next = NULL;
@@ -90,27 +128,40 @@ void deleteLast(List_mtkl &LC, address_mtkl &P){
     }
 }
 
-void deleteAfter(List_mtkl &LC, address_mtkl Prec_C, address_mtkl &P){
-    if(LC.First != NULL){
-        if(Prec_C != NULL && Prec_C != LC.Last){
-            if(Prec_C->next == LC.Last){
+//Joel Andrew MKG
+void deleteAfter(List_mtkl &LC, address_mtkl Prec_C, address_mtkl &P)
+{
+    if(LC.First != NULL)
+    {
+        if(Prec_C != NULL && Prec_C != LC.Last)
+        {
+            if(Prec_C->next == LC.Last)
+            {
                 deleteLast(LC, P);
-            }else{
+            }
+            else
+            {
                 P = Prec_C->next;
                 Prec_C->next = P->next;
                 P->next->Prev = Prec_C;
                 P->Prev = NULL;
                 P->next = NULL;
             }
-        }else{
+        }
+        else
+        {
             cout<<"Gagal delete after"<<endl;
         }
-    }else{
+    }
+    else
+    {
         cout<<"Gagal delete after, list kosong"<<endl;
     }
 }
 
-address_mtkl findElm(List_mtkl &LC, int x){
+//Joel Andrew MKG
+address_mtkl findElm(List_mtkl &LC, int x)
+{
     address_mtkl P;
     P = LC.First;
     if (LC.First==NULL)
@@ -127,14 +178,19 @@ address_mtkl findElm(List_mtkl &LC, int x){
     return P;
 }
 
-void printInfo(List_mtkl LC){
+//Joel Andrew MKG
+void printInfo(List_mtkl LC)
+{
     address_mtkl P;
     P = LC.First;
-    if(LC.First ==NULL){
+    if(LC.First ==NULL)
+    {
         cout<<"List Kosong";
     }
-    else{
-        while(P != NULL){
+    else
+    {
+        while(P != NULL)
+        {
             cout<<"Kode Matakuliah  : "<<info(P).kodematkul<<endl;
             cout<<"Nama Doesen      : "<<info(P).namapengajar<<endl;
             cout<<"Banyak SKS       : "<<info(P).sks<<endl;

@@ -5,7 +5,9 @@
 
 using namespace std;
 
-void menu( List_relasi &R, List_mtkl &LC, List_mhs &L){
+//Joel Andrew MKG
+void menu( List_relasi &R, List_mtkl &LC, List_mhs &L)
+{
     cout<<"PILIHAN MENU : "<<endl;
     cout<<"1.Masukan data mahasiswa"<<endl;
     cout<<"2.Masukan data matakuliah"<<endl;
@@ -38,7 +40,11 @@ void menu( List_relasi &R, List_mtkl &LC, List_mhs &L){
     address_relasi PR = NULL;
     address_mtkl caric;
     address_mhs carip;
-    if(pil==1){
+
+
+//Diah Hevyka Maylawati
+    if(pil==1)
+    {
         cout<<"Masukan NIM MAhasiswa    : ";
         cin>>Mahasiswa.nim;
         cout<<"Masukan Nama Mahasiswa   : ";
@@ -53,11 +59,13 @@ void menu( List_relasi &R, List_mtkl &LC, List_mhs &L){
         cin>>Mahasiswa.kelas_mhs;
         address_mhs P;
         address_mhs Q;
-         if(L.First == NULL){
-             P =  alokasi_mhs(Mahasiswa);
-                insertFirst_mhs(L,P);
-            }
-            else{
+        if(L.First == NULL)
+        {
+            P =  alokasi_mhs(Mahasiswa);
+            insertFirst_mhs(L,P);
+        }
+        else
+        {
             Q=L.First;
             while(Q!=NULL && (Q->info.nim != Mahasiswa.nim))
             {
@@ -70,55 +78,68 @@ void menu( List_relasi &R, List_mtkl &LC, List_mhs &L){
             }
             else
             {
-        P =  alokasi_mhs(Mahasiswa);
-        address_mhs Q;
-            if(L.First == NULL){
-                insertFirst_mhs(L,P);
-            }
-            else if(P->info.nim < L.First->info.nim ){
-                insertFirst_mhs(L,P);
-            }else{
-                Q = L.First;
-                while( Q->next != NULL && (Q->next)->info.nim < P->info.nim){
-                    Q = Q->next;
+                P =  alokasi_mhs(Mahasiswa);
+                address_mhs Q;
+                if(L.First == NULL)
+                {
+                    insertFirst_mhs(L,P);
                 }
-                if(Q->next != NULL){
-                    insertAfter_mhs(L,Q,P);
-                }else{
-                    insertLast_mhs(L,P);
+                else if(P->info.nim < L.First->info.nim )
+                {
+                    insertFirst_mhs(L,P);
+                }
+                else
+                {
+                    Q = L.First;
+                    while( Q->next != NULL && (Q->next)->info.nim < P->info.nim)
+                    {
+                        Q = Q->next;
+                    }
+                    if(Q->next != NULL)
+                    {
+                        insertAfter_mhs(L,Q,P);
+                    }
+                    else
+                    {
+                        insertLast_mhs(L,P);
+                    }
                 }
             }
         }
-      } 
-      cout<<endl;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
+        cout<<endl;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
             menu(R,LC,L);
-            }    
+        }
     }
-            
-    else if(pil==2){
-            address_mtkl Q;
-            matakuliah Matakuliah;
-            cout<<"Masukan Kode Matakuliah  : ";
-            cin>>Matakuliah.kodematkul;
-            cout<<"Masukan Nama Dosen       : ";
-            cin>>Matakuliah.namapengajar;
-            cout<<"Banyak SKS               : ";
-            cin>>Matakuliah.sks;
-            cout<<"Masukan Nama Matakuliah  : ";
-            cin>>Matakuliah.namamatkul;
-            cout<<"Masukan ruangan          : ";
-            cin>>Matakuliah.ruangan;
-            cout<<"Masukan Jam              : ";
-            cin>>Matakuliah.jam;
-            address_mtkl P;
-            if(LC.First == NULL){
-                P = alokasi(Matakuliah);
-                    insertFirst(LC,P);
-                }
-            else{
+
+    //Joel Andrew MKG
+    else if(pil==2)
+    {
+        address_mtkl Q;
+        matakuliah Matakuliah;
+        cout<<"Masukan Kode Matakuliah  : ";
+        cin>>Matakuliah.kodematkul;
+        cout<<"Masukan Nama Dosen       : ";
+        cin>>Matakuliah.namapengajar;
+        cout<<"Banyak SKS               : ";
+        cin>>Matakuliah.sks;
+        cout<<"Masukan Nama Matakuliah  : ";
+        cin>>Matakuliah.namamatkul;
+        cout<<"Masukan ruangan          : ";
+        cin>>Matakuliah.ruangan;
+        cout<<"Masukan Jam              : ";
+        cin>>Matakuliah.jam;
+        address_mtkl P;
+        if(LC.First == NULL)
+        {
+            P = alokasi(Matakuliah);
+            insertFirst(LC,P);
+        }
+        else
+        {
             Q=LC.First;
             while(Q!=NULL && (Q->info.kodematkul != Matakuliah.kodematkul))
             {
@@ -132,381 +153,479 @@ void menu( List_relasi &R, List_mtkl &LC, List_mhs &L){
             else
             {
                 P = alokasi(Matakuliah);
-            
-            address_mtkl Q;
-                if(LC.First == NULL){
-                    insertFirst(LC,P);
-                }
-                else if(P->info.kodematkul < LC.First->info.kodematkul ){
-                    insertFirst(LC,P);
-                }else{
-                    Q = LC.First;
-                    while( Q->next != NULL && (Q->next)->info.kodematkul < P->info.kodematkul){
-                        Q = Q->next;
-                }
-                if(Q->next != NULL){
-                    P->next = Q->next;
-                    P->Prev = Q;
-                    (Q->next)->Prev = P;
-                    Q->next = P;
-                }else{
-                    insertLast(LC,P);
-                }
-            }
-        }  
-            
-    }
-    cout<<endl;
-    cout<<"Ketik '0': ";
-    cin>>men;
-    if(men==0){
-        menu(R,LC,L);
-    }
-}
 
-    else if(pil==3){
+                address_mtkl Q;
+                if(LC.First == NULL)
+                {
+                    insertFirst(LC,P);
+                }
+                else if(P->info.kodematkul < LC.First->info.kodematkul )
+                {
+                    insertFirst(LC,P);
+                }
+                else
+                {
+                    Q = LC.First;
+                    while( Q->next != NULL && (Q->next)->info.kodematkul < P->info.kodematkul)
+                    {
+                        Q = Q->next;
+                    }
+                    if(Q->next != NULL)
+                    {
+                        P->next = Q->next;
+                        P->Prev = Q;
+                        (Q->next)->Prev = P;
+                        Q->next = P;
+                    }
+                    else
+                    {
+                        insertLast(LC,P);
+                    }
+                }
+            }
+
+        }
+        cout<<endl;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
+        }
+    }
+    //Diah Hevyka Maylawati
+    else if(pil==3)
+    {
         printInfo_mhs(L);
-            cout<<endl;
-            cout<<"Ketik '0': ";
-            int men;
-            cin>>men;
-            if(men==0){
-                menu(R,LC,L);
-            }
+        cout<<endl;
+        cout<<"Ketik '0': ";
+        int men;
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
+        }
     }
-    else if(pil==4){
+
+    //Joel Andrew MKG
+    else if(pil==4)
+    {
         printInfo(LC);
-            cout<<endl;
-            cout<<"Ketik '0': ";
-            int men;
-            cin>>men;
-            if(men==0){
-                menu(R,LC,L);
-            }
+        cout<<endl;
+        cout<<"Ketik '0': ";
+        int men;
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
+        }
     }
-    else if(pil==5){
+    //Joel Andrew MKG
+    else if(pil==5)
+    {
         cout<<"Masukan NIM Mahasiswa : ";
         cin>>x;
         address_mhs P;
-    if(L.First == NULL){
-        P = NULL;
-    }else if(L.First != NULL){
-        P = L.First;
-        while((P != NULL)  && P->info.nim != x){
-            P=P->next;
+        if(L.First == NULL)
+        {
+            P = NULL;
         }
-        if(P!=NULL){
-        cout<<"Data di temukan : "<<endl;
-        cout << "NIM Mahasiswa     :"<<P->info.nim <<endl;
-        cout << "Nama Mahasiswa    :"<<P->info.nama <<endl;
-        cout << "Jenis Kelamin     :"<<P->info.JK <<endl;
-        cout << "Jurusan Mahasiswa :"<<P->info.jurusan <<endl;
-        cout << "Kelas Mahasiswa   :"<<P->info.kelas_mhs <<endl;
-        cout << "Alamat Mahasiswa  :"<<P->info.alamat <<endl;
-        }else{
-            cout<<endl;
-            cout<<"Data tidak ditemuka";
+        else if(L.First != NULL)
+        {
+            P = L.First;
+            while((P != NULL)  && P->info.nim != x)
+            {
+                P=P->next;
+            }
+            if(P!=NULL)
+            {
+                cout<<"Data di temukan : "<<endl;
+                cout << "NIM Mahasiswa     :"<<P->info.nim <<endl;
+                cout << "Nama Mahasiswa    :"<<P->info.nama <<endl;
+                cout << "Jenis Kelamin     :"<<P->info.JK <<endl;
+                cout << "Jurusan Mahasiswa :"<<P->info.jurusan <<endl;
+                cout << "Kelas Mahasiswa   :"<<P->info.kelas_mhs <<endl;
+                cout << "Alamat Mahasiswa  :"<<P->info.alamat <<endl;
+            }
+            else
+            {
+                cout<<endl;
+                cout<<"Data tidak ditemuka";
+            }
+        }
+        cout<<endl;
+        cout<<"Ketik '0': ";
+        int men;
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
         }
     }
-    cout<<endl;
-    cout<<"Ketik '0': ";
-    int men;
-    cin>>men;
-    if(men==0){
-        menu(R,LC,L);
-    }
-}
-    else if(pil==6){
+
+    //Joel Andrew MKG
+    else if(pil==6)
+    {
         cout<<"Masukan Kode Matakuliah : ";
         cin>>x;
         address_mtkl P;
-    if(LC.First == NULL){
-        P = NULL;
-    }else if(LC.First != NULL){
-        P = LC.First;
-        while((P != NULL)  && P->info.kodematkul != x){
-            P=P->next;
+        if(LC.First == NULL)
+        {
+            P = NULL;
         }
-        if(P!=NULL){
-        cout<<"Data di temukan  : "<<endl;
-        cout<<"Kode Matakuliah  : "<<info(P).kodematkul<<endl;
-        cout<<"Nama Doesen      : "<<info(P).namapengajar<<endl;
-        cout<<"Banyak SKS       : "<<info(P).sks<<endl;
-        cout<<"Nama Matakuliah  : "<<info(P).namamatkul<<endl;
-        cout<<"Ruangan          : "<<info(P).ruangan<<endl;
-        cout<<"Jam masuk        : "<<info(P).jam<<endl;
-    }else {
+        else if(LC.First != NULL)
+        {
+            P = LC.First;
+            while((P != NULL)  && P->info.kodematkul != x)
+            {
+                P=P->next;
+            }
+            if(P!=NULL)
+            {
+                cout<<"Data di temukan  : "<<endl;
+                cout<<"Kode Matakuliah  : "<<info(P).kodematkul<<endl;
+                cout<<"Nama Doesen      : "<<info(P).namapengajar<<endl;
+                cout<<"Banyak SKS       : "<<info(P).sks<<endl;
+                cout<<"Nama Matakuliah  : "<<info(P).namamatkul<<endl;
+                cout<<"Ruangan          : "<<info(P).ruangan<<endl;
+                cout<<"Jam masuk        : "<<info(P).jam<<endl;
+            }
+            else
+            {
+                cout<<endl;
+                cout<<"Data tidak ditemukan";
+            }
+        }
         cout<<endl;
-        cout<<"Data tidak ditemukan";
-    }
-    }
-    cout<<endl;
-    cout<<"Ketik '0': ";
-    int men;
-    cin>>men;
-    if(men==0){
-        menu(R,LC,L);
-    }
-    }
-    else if(pil==7){
-            cout<<"Merelasikan MAhasiswa dengan MAtakuliah yang di ambil"<<endl;
-            cout<<"Masukkan NIM             : ";
-            cin>>xx;
-            cout<<"Masukkan Kode Matkul     :";
-            cin>>x;
-            
-            address_mtkl P;
-            address_mhs Q;
-            address_relasi PR;
-            
-            if(LC.First == NULL){
-                P = NULL;
-            }else{
-                P = LC.First;
-                while((P != NULL)  && P->info.kodematkul != x){
-                    P=P->next;
-                }
-            }
-            
-            caric = P;
-            if(L.First == NULL){
-                Q = NULL;
-            }else{
-                Q = L.First;
-                while((Q != NULL)  && Q->info.nim != xx){
-                    Q=Q->next;
-                }
-            }
-            
-                carip = Q;
-                if(carip != NULL && caric != NULL)
-                {   
-                    PR = alokasiRelasi(carip,caric);
-                    insertLast(R,PR);
-                    cout<<"NIM : "<<info(carip).nim<<" dengan Kode Matkul : "<<info(caric).kodematkul<<" berhasil direlasikan "<<endl;
-                }
-                else
-                {   
-                    cout<<"NIM / Kode Matkul Tidak Ditemukan!!"<<endl;
-                } 
-            cout<<endl;
-            int men;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
-                menu(R,LC,L);
-            }  
+        cout<<"Ketik '0': ";
+        int men;
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
         }
-            
-    
-    else if(pil == 8){
+    }
+
+    //Joel Andrew MKG
+    else if(pil==7)
+    {
+        cout<<"Merelasikan MAhasiswa dengan MAtakuliah yang di ambil"<<endl;
+        cout<<"Masukkan NIM             : ";
+        cin>>xx;
+        cout<<"Masukkan Kode Matkul     :";
+        cin>>x;
+
+        address_mtkl P;
+        address_mhs Q;
+        address_relasi PR;
+
+        if(LC.First == NULL)
+        {
+            P = NULL;
+        }
+        else
+        {
+            P = LC.First;
+            while((P != NULL)  && P->info.kodematkul != x)
+            {
+                P=P->next;
+            }
+        }
+
+        caric = P;
+        if(L.First == NULL)
+        {
+            Q = NULL;
+        }
+        else
+        {
+            Q = L.First;
+            while((Q != NULL)  && Q->info.nim != xx)
+            {
+                Q=Q->next;
+            }
+        }
+
+        carip = Q;
+        if(carip != NULL && caric != NULL)
+        {
+            PR = alokasiRelasi(carip,caric);
+            insertLast(R,PR);
+            cout<<"NIM : "<<info(carip).nim<<" dengan Kode Matkul : "<<info(caric).kodematkul<<" berhasil direlasikan "<<endl;
+        }
+        else
+        {
+            cout<<"NIM / Kode Matkul Tidak Ditemukan!!"<<endl;
+        }
+        cout<<endl;
+        int men;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
+            menu(R,LC,L);
+        }
+    }
+
+    //Joel Andrew MKG
+    else if(pil == 8)
+    {
         printInfo_R(R);
         cout<<endl;
-            int men;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
+        int men;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
             menu(R,LC,L);
-            }
+        }
     }
-    else if(pil == 9){
+
+    //Joel Andrew MKG
+    else if(pil == 9)
+    {
         int k,l;
         cout<<"Masukan Nim Mahasiswa    : ";
         cin>>k;
         cout<<"Masukan Kode Matakuliah  : ";
         cin>>l;
         address_relasi DR;
-        if(R.FirstR == NULL){
+        if(R.FirstR == NULL)
+        {
             DR = NULL;
-            }else{
-                DR = R.FirstR;
-                while(( DR!= NULL)  && (DR->child->info.kodematkul != l || DR->parent->info.nim != k)){
-                    DR=DR->next;
-                }
-                cout <<"NIM Mahasiswa       : "<<DR->parent->info.nim <<endl;
-                cout<<"Nama Mahasiswa       : "<<DR->parent->info.nama<<endl;
-                cout << "Kode Matakuliah    : "<<DR->child->info.kodematkul <<endl;
-                cout<<"Nama Matakuliah      : "<<DR->child->info.namamatkul<<endl;
+        }
+        else
+        {
+            DR = R.FirstR;
+            while(( DR!= NULL)  && (DR->child->info.kodematkul != l || DR->parent->info.nim != k))
+            {
+                DR=DR->next;
             }
-            cout<<endl;
-            int men;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
+            cout <<"NIM Mahasiswa       : "<<DR->parent->info.nim <<endl;
+            cout<<"Nama Mahasiswa       : "<<DR->parent->info.nama<<endl;
+            cout << "Kode Matakuliah    : "<<DR->child->info.kodematkul <<endl;
+            cout<<"Nama Matakuliah      : "<<DR->child->info.namamatkul<<endl;
+        }
+        cout<<endl;
+        int men;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
             menu(R,LC,L);
-            }
+        }
     }
-    else if(pil == 10){
+
+    //Joel Andrew MKG
+    else if(pil == 10)
+    {
         int k,l;
         cout<<"Masukan Nim Mahasiswa    : ";
         cin>>k;
         cout<<"Masukan Kode Matakuliah  : ";
         cin>>l;
         address_relasi DR;
-        if(R.FirstR == NULL){
+        if(R.FirstR == NULL)
+        {
             DR = NULL;
-            }else{
-                DR = R.FirstR;
-                while(( DR!= NULL)  && (DR->child->info.kodematkul != l || DR->parent->info.nim != k)){
-                    DR=DR->next;
-                }
-                deletebyrelasi(R,DR);
-            } 
-            cout<<endl;
-            int men;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
+        }
+        else
+        {
+            DR = R.FirstR;
+            while(( DR!= NULL)  && (DR->child->info.kodematkul != l || DR->parent->info.nim != k))
+            {
+                DR=DR->next;
+            }
+            deletebyrelasi(R,DR);
+        }
+        cout<<endl;
+        int men;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
             menu(R,LC,L);
-            }          
+        }
     }
-    else if(pil == 11){
+
+    //Joel Andrew MKG
+    else if(pil == 11)
+    {
         int b;
         cout<<"Masukan NIM Mahasiswa : ";
         cin>>b;
         address_mhs P,W;
         address_relasi Q,C;
-        if(L.First == NULL){
+        if(L.First == NULL)
+        {
             P = NULL;
         }
-        else if(L.First != NULL){
+        else if(L.First != NULL)
+        {
             P = L.First;
-            while((P != NULL)  && P->info.nim != b){
+            while((P != NULL)  && P->info.nim != b)
+            {
                 P=P->next;
             }
-            if(P!=NULL){
+            if(P!=NULL)
+            {
                 Q = R.FirstR;
-                while(Q !=NULL){
-                    if(Q->parent->info.nim == P->info.nim){
+                while(Q !=NULL)
+                {
+                    if(Q->parent->info.nim == P->info.nim)
+                    {
                         C = Q;
                         Q = Q->next;
                         deletebyrelasi(R,C);
-                    }else{
+                    }
+                    else
+                    {
                         Q = Q->next;
                     }
                 }
-        if(L.First != NULL)
-        {
-            if(P == L.First)
-            {
-                deleteFirst_mhs(L,P);
-            }
-            else
-            {
-                W = L.First;
-                while(W->next != P)
-                W = W->next;
-
-                if(W->next == P && P->next == NULL)
+                if(L.First != NULL)
                 {
-                    deleteLast_mhs(L,P);
+                    if(P == L.First)
+                    {
+                        deleteFirst_mhs(L,P);
+                    }
+                    else
+                    {
+                        W = L.First;
+                        while(W->next != P)
+                            W = W->next;
+
+                        if(W->next == P && P->next == NULL)
+                        {
+                            deleteLast_mhs(L,P);
+                        }
+                        else
+                        {
+                            W->next = P->next;
+                            P->next = NULL;
+                        }
+                    }
+                    cout<<"Data Berhasil Dihapus"<<endl;
+
                 }
                 else
                 {
-                    W->next = P->next;
-                    P->next = NULL;
+                    cout<<"List Kosong"<<endl;
                 }
             }
-            cout<<"Data Berhasil Dihapus"<<endl;
-            
-        }
-        else
-        {
-            cout<<"List Kosong"<<endl;
-        }
-            }else{
-             cout<<"Data Tidak di temukan"<<endl;
+            else
+            {
+                cout<<"Data Tidak di temukan"<<endl;
             }
-        cout<<endl;
+            cout<<endl;
             int men;
             cout<<"Ketik '0': ";
             cin>>men;
-            if(men==0){
-            menu(R,LC,L);
+            if(men==0)
+            {
+                menu(R,LC,L);
             }
+        }
     }
-}
-    else if(pil == 12){
+
+    //Joel Andrew MKG
+    else if(pil == 12)
+    {
         int b;
         cout<<"Masukan Kode Matakuliah : ";
         cin>>b;
         address_mtkl P,W;
         address_relasi Q,C;
-        
-        if(LC.First == NULL){
+
+        if(LC.First == NULL)
+        {
             P = NULL;
         }
-        else if(LC.First != NULL){
+        else if(LC.First != NULL)
+        {
             P = LC.First;
-            while((P != NULL)  && P->info.kodematkul != b){
+            while((P != NULL)  && P->info.kodematkul != b)
+            {
                 P=P->next;
             }
-            if(P!=NULL){
+            if(P!=NULL)
+            {
                 Q = R.FirstR;
-                while(Q !=NULL){
-                    if(Q->child->info.kodematkul == P->info.kodematkul){
+                while(Q !=NULL)
+                {
+                    if(Q->child->info.kodematkul == P->info.kodematkul)
+                    {
                         C = Q;
                         Q = Q->next;
                         deletebyrelasi(R,C);
-                    }else{
+                    }
+                    else
+                    {
                         Q = Q->next;
                     }
                 }
-               
-        if(LC.First != NULL)
-        {
-            if(P == LC.First)
-            {
-                 
-                deleteFirst(LC,P);
 
-            }
-            else
-            {
-                W = LC.First;
-                while(W->next != P)
-                W = W->next;
-
-                if(W->next == P && P->next == NULL)
+                if(LC.First != NULL)
                 {
-                    deleteLast(LC,P);
+                    if(P == LC.First)
+                    {
+
+                        deleteFirst(LC,P);
+
+                    }
+                    else
+                    {
+                        W = LC.First;
+                        while(W->next != P)
+                            W = W->next;
+
+                        if(W->next == P && P->next == NULL)
+                        {
+                            deleteLast(LC,P);
+                        }
+                        else
+                        {
+                            W->next = P->next;
+                            P->next->Prev = W;
+                            P->Prev = NULL;
+                            P->next = NULL;
+                        }
+                    }
+                    cout<<"Data Berhasil Dihapus"<<endl;
                 }
                 else
                 {
-                    W->next = P->next;
-                    P->next->Prev = W;
-                    P->Prev = NULL;
-                    P->next = NULL;
+                    cout<<"List Kosong"<<endl;
                 }
             }
-            cout<<"Data Berhasil Dihapus"<<endl;
-        }
-        else
-        {
-            cout<<"List Kosong"<<endl;
-        }
-            }else{
-             cout<<"Data Tidak di temukan"<<endl;
+            else
+            {
+                cout<<"Data Tidak di temukan"<<endl;
             }
-        cout<<endl;
+            cout<<endl;
             int men;
             cout<<"Ketik '0': ";
             cin>>men;
-            if(men==0){
-            menu(R,LC,L);
+            if(men==0)
+            {
+                menu(R,LC,L);
             }
+        }
     }
-    }
-    else if(pil == 13){
+
+    //Joel Andrew MKG
+    else if(pil == 13)
+    {
         sortrelasi(R);
         printInfo_R(R);
         cout<<endl;
-            int men;
-            cout<<"Ketik '0': ";
-            cin>>men;
-            if(men==0){
+        int men;
+        cout<<"Ketik '0': ";
+        cin>>men;
+        if(men==0)
+        {
             menu(R,LC,L);
-            }
+        }
     }
 }
 

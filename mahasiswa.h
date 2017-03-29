@@ -2,9 +2,12 @@
 #define MAHASISWA_H_INCLUDED
 using namespace std;
 
+//Diah Hevyka Maylawati
 typedef struct elmlist_mhs *address_mhs;
 
-struct mahasiswa{
+//Diah Hevyka Maylawati
+struct mahasiswa
+{
     int nim;
     string nama;
     string alamat;
@@ -13,15 +16,20 @@ struct mahasiswa{
     string kelas_mhs;
 };
 
-struct elmlist_mhs{
+//Diah Hevyka Maylawati
+struct elmlist_mhs
+{
     mahasiswa info;
     address_mhs next;
 };
 
-struct List_mhs{
+//Diah Hevyka Maylawati
+struct List_mhs
+{
     address_mhs First;
 };
 
+//Diah Hevyka Maylawati
 void createList_mhs(List_mhs &L);
 address_mhs alokasi_mhs(mahasiswa x);
 void dealokasi_mhs(address_mhs &P);

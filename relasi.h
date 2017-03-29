@@ -4,18 +4,25 @@
 #include "mahasiswa.h"
 
 using namespace std;
+
+//Diah Hevyka Maylawati
 typedef struct elm_relasi *address_relasi;
 
-struct List_relasi{
+//Diah Hevyka Maylawati
+struct List_relasi
+{
     address_relasi FirstR;
 };
 
-struct elm_relasi{
+//Diah Hevyka Maylawati
+struct elm_relasi
+{
     address_relasi next;
     address_mhs parent;
     address_mtkl child;
 };
 
+//Diah Hevyka Maylawati
 void deletebyrelasi(List_relasi &R, address_relasi &P);
 void deleterelasi(List_relasi &R, address_relasi &P);
 address_relasi alokasiRelasi(address_mhs P, address_mtkl C);

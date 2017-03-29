@@ -4,26 +4,31 @@
 #include "matkul.h"
 using namespace std;
 
+//Diah Hevyka Maylawati
 void createList_relasi(List_relasi &R)
 {
     R.FirstR=NULL;
 }
 
+//Diah Hevyka Maylawati
 address_relasi alokasiRelasi(address_mhs P, address_mtkl L)
 {
     address_relasi Q = new
 
-elm_relasi;
+    elm_relasi;
     Q->child = L;
     Q->parent = P;
     Q->next = NULL;
     return Q;
 }
+
+//Diah Hevyka Maylawati
 void dealokasi(address_relasi &P)
 {
     delete P;
 }
 
+//Diah Hevyka Maylawati
 void deleterelasi(List_relasi &R, address_relasi &P)
 {
     P->child = NULL;
@@ -31,6 +36,7 @@ void deleterelasi(List_relasi &R, address_relasi &P)
     dealokasi(P);
 }
 
+//Diah Hevyka Maylawati
 void insertFirst(List_relasi &R, address_relasi P)
 {
     if (R.FirstR == NULL)
@@ -45,6 +51,8 @@ void insertFirst(List_relasi &R, address_relasi P)
         R.FirstR = P;
     }
 }
+
+//Diah Hevyka Maylawati
 void insertLast(List_relasi &R, address_relasi P)
 {
     if (R.FirstR == NULL)
@@ -64,21 +72,26 @@ void insertLast(List_relasi &R, address_relasi P)
     }
 }
 
+//Diah Hevyka Maylawati
 void insertAfter(List_relasi R, address_relasi &Prec,
 
-address_relasi &P)
+                 address_relasi &P)
 {
-    if(R.FirstR == NULL){
+    if(R.FirstR == NULL)
+    {
         insertFirst(R,P);
-    }else{
+    }
+    else
+    {
         next(P) = next(Prec);
         next(Prec) = P;
     }
 }
 
+//Diah Hevyka Maylawati
 address_relasi findElm_R(List_relasi R, address_mhs P, address_mtkl
 
-C)
+                         C)
 {
     address_relasi Q = R.FirstR;
     while(Q != NULL)
@@ -92,12 +105,18 @@ C)
     return NULL;
 }
 
-void printInfo_R(List_relasi R){
-    if(R.FirstR==NULL){
+//Diah Hevyka Maylawati
+void printInfo_R(List_relasi R)
+{
+    if(R.FirstR==NULL)
+    {
         cout << "List kosong" <<endl;
-    }else{
+    }
+    else
+    {
         address_relasi P = R.FirstR;
-        while(P!=NULL){
+        while(P!=NULL)
+        {
             cout << "NIM Mahasiswa      : "<<P->parent->info.nim <<endl;
             cout<<"Nama Mahasiswa       : "<<P->parent->info.nama<<endl;
             cout << "Kode Matakuliah    : "<<P->child->info.kodematkul <<endl;
@@ -109,6 +128,8 @@ void printInfo_R(List_relasi R){
         cout << endl;
     }
 }
+
+//Diah Hevyka Maylawati
 void deletebyrelasi(List_relasi &R, address_relasi &P)
 {
     address_relasi Q;
@@ -135,7 +156,7 @@ void deletebyrelasi(List_relasi &R, address_relasi &P)
                 deleterelasi(R,P);
             }
         }
-        
+
     }
     else
     {
@@ -143,6 +164,7 @@ void deletebyrelasi(List_relasi &R, address_relasi &P)
     }
 }
 
+//Diah Hevyka Maylawati
 void deleteFirst(List_relasi &R, address_relasi &P)
 {
     if(R.FirstR != NULL)
@@ -161,6 +183,8 @@ void deleteFirst(List_relasi &R, address_relasi &P)
         deleterelasi(R,P);
     }
 }
+
+//Diah Hevyka Maylawati
 void deleteLast(List_relasi &R, address_relasi&P)
 {
     if(R.FirstR != NULL)
@@ -182,6 +206,8 @@ void deleteLast(List_relasi &R, address_relasi&P)
         deleterelasi(R,P);
     }
 }
+
+//Diah Hevyka Maylawati
 void deleteAfter(address_relasi Prec, address_relasi &P)
 {
     List_relasi R;
@@ -207,6 +233,8 @@ void deleteAfter(address_relasi Prec, address_relasi &P)
         cout<<"List Kosong"<<endl;
     }
 }
+
+//Diah Hevyka Maylawati
 address_relasi searchrelasi(List_relasi R, address_mhs Q,address_mtkl Z)
 {
     if(R.FirstR != NULL)
@@ -234,6 +262,8 @@ address_relasi searchrelasi(List_relasi R, address_mhs Q,address_mtkl Z)
         cout<<"List Kosong"<<endl;
     }
 }
+
+//Diah Hevyka Maylawati
 address_relasi searchrelasiparent(List_relasi R, address_mhs &P)
 {
     if(R.FirstR != NULL)
@@ -258,6 +288,8 @@ address_relasi searchrelasiparent(List_relasi R, address_mhs &P)
         return NULL;
     }
 }
+
+//Diah Hevyka Maylawati
 address_relasi searchrelasichild(List_relasi R, address_mtkl P)
 {
     if(R.FirstR != NULL)
@@ -282,24 +314,33 @@ address_relasi searchrelasichild(List_relasi R, address_mtkl P)
     }
 }
 
-address_relasi findMinimum(List_relasi &R){
+//Diah Hevyka Maylawati
+address_relasi findMinimum(List_relasi &R)
+{
     address_relasi P = NULL;
-    if(R.FirstR==NULL){
+    if(R.FirstR==NULL)
+    {
         cout<<"List Kosong"<<endl;
-    }else{
+    }
+    else
+    {
         P = R.FirstR;
         address_relasi min = P;
-        while(P->next != NULL ){
+        while(P->next != NULL )
+        {
             P = P->next;
-            if(P->parent->info.nim < min->parent->info.nim){
-                  min = P;
-            }                
+            if(P->parent->info.nim < min->parent->info.nim)
+            {
+                min = P;
+            }
         }
         P = min;
     }
     return P;
 }
+/
 
+//Joel Andrew MKG
 void sortrelasi(List_relasi &R)
 {
     address_relasi P,A;
@@ -307,7 +348,8 @@ void sortrelasi(List_relasi &R)
     address_mtkl Z;
     List_relasi C;
     createList_relasi(C);
-    while(R.FirstR != NULL){
+    while(R.FirstR != NULL)
+    {
         P = findMinimum(R);
         Q = P->parent;
         Z = P->child;

@@ -7,11 +7,13 @@ using namespace std;
 #define nill NULL;
 #define First(LC) LC.First
 #define next(P) P->next
-#define Last(LC) LC.Last 
-#define Prev(P) P->Prev 
+#define Last(LC) LC.Last
+#define Prev(P) P->Prev
 #define info(P) P->info
 
-struct matakuliah{
+//Joel Andrew MKG
+struct matakuliah
+{
     int kodematkul;
     string namapengajar;
     string sks;
@@ -20,19 +22,25 @@ struct matakuliah{
     string jam;
 };
 
+//Joel Andrew MKG
 typedef struct elmlist_mtkl *address_mtkl;
-struct elmlist_mtkl{
+
+//Joel Andrew MKG
+struct elmlist_mtkl
+{
     matakuliah info;
     address_mtkl next;
     address_mtkl Prev;
 };
 
-struct List_mtkl{
+//Joel Andrew MKG
+struct List_mtkl
+{
     address_mtkl First;
     address_mtkl Last;
 };
 
-
+//Joel Andrew MKG
 void createList(List_mtkl &LC);
 address_mtkl alokasi(matakuliah x);
 void dealokasi_mtkl(address_mtkl &P);
